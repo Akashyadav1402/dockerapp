@@ -1,0 +1,7 @@
+services:
+  myapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: localhost:5000/repository/dockerimage/myapp:latest
+
