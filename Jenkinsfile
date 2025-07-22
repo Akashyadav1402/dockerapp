@@ -59,9 +59,7 @@ pipeline {
                     sh 'docker push'
                 }
             }
-        }
-
-        }
+    
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
@@ -70,4 +68,4 @@ pipeline {
             }
         }
     }
-}
+}   
