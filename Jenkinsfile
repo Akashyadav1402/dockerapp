@@ -56,7 +56,7 @@ pipeline {
     stage('Push') {
                 steps {
                     //sh 'docker build -t $REGISTRY_URL/myrepo/myapp:latest .'
-                    sh 'docker push'
+                    sh 'docker compose push'
                 }
             }
     
