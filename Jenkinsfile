@@ -53,14 +53,19 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                echo 'Testing..'
+    stage('Push') {
+                steps {
+                    //sh 'docker build -t $REGISTRY_URL/myrepo/myapp:latest .'
+                    sh 'docker push'
+                }
             }
+        }
+
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                sh 'docker compose up'
                 sh 'docker compose ps'
             }
         }
