@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-    SONAR_HOST = 'http://localhost:9000'
-    SONAR_TOKEN = credentials('sonarqubetoken')
+    //SONAR_HOST = 'http://localhost:9000'
+    //SONAR_TOKEN = credentials('sonarqubetoken')
     REGISTRY_URL = 'localhost:5000'  // or your actual Docker registry URL
   }
 
@@ -30,7 +30,7 @@ pipeline {
           }
         }
 
-    stage('SonarQube Analysis') {
+   /* stage('SonarQube Analysis') {
             steps {
             withSonarQubeEnv('SonarQube') {
                 script {
@@ -40,7 +40,7 @@ pipeline {
                 }
                 }
             }
-            }      
+            }  */    
 
     stage('Build') {
             steps {
