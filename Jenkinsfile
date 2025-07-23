@@ -8,15 +8,7 @@ pipeline {
 
     stages {
 
-    stage('Docker Login') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'nexusdocker', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                    sh """
-                        echo "$DOCKER_PASS" | docker login $REGISTRY_URL -u "$DOCKER_USER" --password-stdin
-                    """
-                }
-            }
-        }
+
     
     stage('Clean Workspace') {
             steps {
@@ -48,8 +40,19 @@ pipeline {
                 // Check the docker-compose version
                 sh 'docker compose version'
                 // build the image
-                sh 'docker compose build'
+                //sh 'docker compose build'
+                sh 'docker build -t $REGISTRY_URL/myapp:latest .'
                 //sh 'docker compose up -d'               // Ensure the services are running
+            }
+        }
+
+    stage('Docker Login') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'nexusdocker', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    sh """
+                        echo "$DOCKER_PASS" | docker login $REGISTRY_URL -u "$DOCKER_USER" --password-stdin
+                    """
+                }
             }
         }
 
@@ -63,7 +66,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                //sh 'docker compose up'
+                sh 'docker compose up'
                 sh 'docker compose ps'
             }
         }
