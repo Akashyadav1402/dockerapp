@@ -22,7 +22,7 @@ pipeline {
           }
         }
 
-   /* stage('SonarQube Analysis') {
+    stage('SonarQube Analysis') {
             steps {
             withSonarQubeEnv('SonarQube') {
                 script {
@@ -32,7 +32,7 @@ pipeline {
                 }
                 }
             }
-            }  */    
+            }      
 
     stage('Build') {
             steps {
